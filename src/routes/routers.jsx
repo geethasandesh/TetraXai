@@ -5,6 +5,7 @@ import FeaturesPage from '../pages/FeaturesPage';
 import PricingPage from '../pages/PricingPage';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
+import Clients from '../pages/Clients';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />,
+      },
+      {
+        path: 'clients',
+        element: <Clients />,
       },
     ],
   },

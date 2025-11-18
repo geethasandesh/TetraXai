@@ -4,6 +4,8 @@ import PricingSection from '../sections/PricingSection';
 import CTA from '../sections/CTA';
 import Brands from '../sections/Brands';
 import Intro from '../sections/Intro';
+import Testimonials from '../sections/Testimonials';  
+import WhyChooseUs from '../sections/WhyChooseUs';
 
 
 const Home = () => {
@@ -13,8 +15,9 @@ const Home = () => {
       <Brands />
       <Intro />
       <Features />
-      <PricingSection />
+      <WhyChooseUs />
       <CTA />
+      <Testimonials />
     </div>
   );
 };

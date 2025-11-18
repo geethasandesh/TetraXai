@@ -1,112 +1,257 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { Github, Twitter, Linkedin, Mail, ArrowRight } from 'lucide-react';
+
+const AnimatedLetter = ({ letter, index, color = 'text-gray-900', isInView }) => {
+  const letterBlurValue = useMotionValue(20);
+  const letterBlur = useTransform(letterBlurValue, (value) => `blur(${value}px)`);
+
+  useEffect(() => {
+    if (isInView) {
+      const blurAnimation = setTimeout(() => {
+        animate(letterBlurValue, 0, {
+          duration: 0.8,
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.2 + (index * 0.05)
+        });
+      }, 100);
+
+      return () => clearTimeout(blurAnimation);
+    }
+  }, [letterBlurValue, index, isInView]);
+
+  return (
+    <motion.span
+      initial={{ 
+        opacity: 0, 
+        y: 30,
+      }}
+      animate={isInView ? { 
+        opacity: 1, 
+        y: 0,
+      } : {
+        opacity: 0,
+        y: 30,
+      }}
+      transition={{ 
+        delay: 0.2 + (index * 0.05),
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1]
+      }}
+      style={{ 
+        filter: letterBlur
+      }}
+      className={`inline-block ${color}`}
+    >
+      {letter}
+    </motion.span>
+  );
+};
+
+const TextReveal = () => {
+  const textRef = useRef(null);
+  const isInView = useInView(textRef, { once: true, margin: "-100px" });
+
+  const text = "TetraX Ai";
+  const letters = text.split('');
+
+  return (
+    <div
+      ref={textRef}
+      style={{ 
+        width: '143vw',
+        maxWidth: 'none'
+      }}
+    >
+      <h2 className="text-8xl lg:text-9xl font-extrabold font-mono leading-none tracking-tight whitespace-nowrap">
+        {letters.map((letter, index) => {
+          let color = 'text-gray-900';
+          if (index === 5) color = 'text-indigo-600'; // X
+          if (index >= 6) color = 'text-fuchsia-300'; // Ai
+          
+          return (
+            <AnimatedLetter 
+              key={`letter-${index}`} 
+              letter={letter === ' ' ? '\u00A0' : letter} 
+              index={index}
+              color={color}
+              isInView={isInView}
+            />
+          );
+        })}
+      </h2>
+    </div>
+  );
+};
 
 const Footer = () => {
-  const footerLinks = {
-    Product: [
-      { name: 'Features', path: '/features' },
-      { name: 'Pricing', path: '/pricing' },
-      { name: 'Documentation', path: '#' },
-      { name: 'API Reference', path: '#' },
-    ],
-    Company: [
-      { name: 'About', path: '/about' },
-      { name: 'Blog', path: '#' },
-      { name: 'Careers', path: '#' },
-      { name: 'Contact', path: '/contact' },
-    ],
-    Legal: [
-      { name: 'Privacy Policy', path: '#' },
-      { name: 'Terms of Service', path: '#' },
-      { name: 'Cookie Policy', path: '#' },
-    ],
-  };
+  const exploreLinks = [
+    { name: 'About', path: '/about' },
+    { name: 'Features', path: '/features' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: '#', label: 'Email' },
+    { icon: Twitter, username: '@tetrax', href: '#', color: 'text-gray-900' },
+    { icon: Linkedin, username: '@tetrax', href: '#', color: 'text-blue-600' },
+    { icon: Github, username: '@tetrax', href: '#', color: 'text-gray-900' },
+    { icon: Mail, username: 'contact@tetrax.ai', href: 'mailto:contact@tetrax.ai', color: 'text-gray-900' },
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-gray-50 to-gray-100 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-          {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-cyan-400 flex items-center justify-center text-white font-bold shadow-lg">
-                TX
-              </div>
-              <div>
-                <h3 className="font-extrabold text-lg">
-                  Tetra<span className="text-indigo-600">X</span>
-                </h3>
-                <p className="text-xs text-gray-500">Design · Integrate · Scale</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600 mb-6 max-w-md">
-              Build faster, ship smarter. A next-generation frontend toolkit that combines blazing-fast performance with beautiful UI primitives.
+    <footer className="bg-white border-t border-gray-200 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 py-8 relative">
+        {/* Top Section - Four Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6">
+          {/* Left Column - Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-1"
+          >
+            <p className="text-gray-900 text-sm leading-relaxed">
+              TetraX is an independent technology company and digital transformation partner. We help businesses design, integrate, and scale their digital solutions.
             </p>
-            
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-lg bg-white hover:bg-indigo-50 flex items-center justify-center text-gray-600 hover:text-indigo-600 transition-colors shadow-sm"
-                  aria-label={social.label}
+          </motion.div>
+
+          {/* Middle-Left Column - Explore */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <motion.h4
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="font-semibold text-gray-900 mb-6 text-sm"
+            >
+              Explore
+            </motion.h4>
+            <ul className="space-y-4">
+              {exploreLinks.map((link, index) => (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
+                  <Link
+                    to={link.path}
+                    className="text-sm text-gray-900 hover:text-gray-600 transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </motion.div>
 
-          {/* Links Sections */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="font-semibold text-gray-900 mb-4">{category}</h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      to={link.path}
-                      className="text-sm text-gray-600 hover:text-indigo-600 transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Middle-Right Column - Follow us */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <motion.h4
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="font-semibold text-gray-900 mb-6 text-sm"
+            >
+              Follow us
+            </motion.h4>
+            <ul className="space-y-4">
+              {socialLinks.map((social, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                  whileHover={{ x: 5 }}
+                >
+                  <a
+                    href={social.href}
+                    className="flex items-center gap-2 text-sm text-gray-900 hover:opacity-70 transition-opacity"
+                  >
+                    <social.icon className={`w-4 h-4 ${social.color}`} />
+                    <span>{social.username}</span>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Right Column - Call & Tools */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-8"
+          >
+            {/* Contact TetraX */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Link to="/contact" className="block">
+                <div className="flex items-center gap-2 mb-2">
+                  <h4 className="font-semibold text-red-600 text-sm">Contact TetraX</h4>
+                  <motion.div
+                    className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <ArrowRight className="w-3 h-3 text-white" />
+                  </motion.div>
+                </div>
+                <p className="text-sm text-gray-900">Let's work together</p>
+              </Link>
+            </motion.div>
+
+            {/* Pricing & Services */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Link to="/pricing" className="block">
+                <div className="flex items-center gap-2 mb-2">
+                  <h4 className="font-semibold text-gray-900 text-sm">Pricing & Services</h4>
+                  <motion.div
+                    className="w-5 h-5 rounded-full bg-gray-900 flex items-center justify-center"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <ArrowRight className="w-3 h-3 text-white" />
+                  </motion.div>
+                </div>
+                <p className="text-sm text-gray-900">View our plans</p>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-600">
-              © {new Date().getFullYear()} TetraX AI. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm text-gray-600">
-              <a href="#" className="hover:text-indigo-600 transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="hover:text-indigo-600 transition-colors">
-                Terms
-              </a>
-              <a href="#" className="hover:text-indigo-600 transition-colors">
-                Cookies
-              </a>
-            </div>
-          </div>
+      </div>
+      
+      {/* Bottom Section - Large Brand Text - Full Width (70% visible) */}
+      <div className="pt-4 border-t border-gray-200 w-full">
+        <div className="w-full overflow-x-hidden overflow-y-visible">
+          <TextReveal />
         </div>
       </div>
     </footer>

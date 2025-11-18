@@ -22,7 +22,7 @@ const CTA = () => {
             transition={{ duration: 0.6 }}
             className="flex-1 text-white"
           >
-            <h2 className="text-4xl lg:text-5xl font-extrabold mb-4">
+            <h2 className="text-4xl lg:text-5xl font-sans mb-4">
               Ready to build something amazing?
             </h2>
             <p className="text-lg text-indigo-100 max-w-xl">
@@ -38,20 +38,13 @@ const CTA = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group px-8 py-4 rounded-xl bg-white text-indigo-600 font-semibold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2"
-            >
-              Get Started Free
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+            
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group px-8 py-4 rounded-xl border-2 border-white text-white font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
             >
-              <BookOpen className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5" />
               View Documentation
             </motion.button>
           </motion.div>
@@ -72,7 +65,7 @@ const CTA = () => {
             { value: '24/7', label: 'Support' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl lg:text-4xl font-extrabold mb-1">{stat.value}</div>
+              <div className="text-3xl lg:text-4xl font-sans mb-1">{stat.value}</div>
               <div className="text-indigo-100 text-sm">{stat.label}</div>
             </div>
           ))}
