@@ -195,7 +195,6 @@ const Contact = () => {
               </motion.div>
             </motion.div>
           </motion.div>
-
           {/* Right Section - Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
