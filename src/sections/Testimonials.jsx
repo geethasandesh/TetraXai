@@ -4,11 +4,13 @@ import { Linkedin, MoreVertical, Star, Quote, ChevronLeft, ChevronRight } from '
 import ibmLogo from '../assets/ibm.png';
 import accentureLogo from '../assets/accenture.png';
 import appleLogo from '../assets/apple.png';
+import bankofamericaLogo from '../assets/bankofamerica.png';
+
 
 const Testimonials = () => {
   const testimonials = [
     {
-      company: 'IBM',
+      company: '',
       logo: ibmLogo,
       rating: 5,
       quote: 'Working with TetraX has been a game-changer for our organization. Their strategic approach to digital transformation and commitment to excellence is unmatched in the industry. Their team is professional, knowledgeable, and truly understands our business needs. Whether it\'s for a complex workflow or a lightweight self-service feature, the user experience always feels effortless and refined.',
@@ -18,7 +20,7 @@ const Testimonials = () => {
       linkedin: '#'
     },
     {
-      company: 'ACCENTURE',
+      company: '',
       logo: accentureLogo,
       rating: 5,
       quote: 'TetraX\'s consulting services helped us streamline our operations and achieve significant cost savings. Their team is professional, knowledgeable, and truly understands our business needs.',
@@ -28,17 +30,17 @@ const Testimonials = () => {
       linkedin: '#'
     },
     {
-      company: 'SQUIRE',
-      logo: null,
+      company: '',
+      logo: bankofamericaLogo,
       rating: 5,
       quote: 'Robin consistently delivers clean, intuitive designs that strike the perfect balance between aesthetic and usability. Whether it\'s for a complex workflow or a lightweight self-service feature, the user experience always feels effortless and refined.',
       author: 'Dave Salvant',
-      title: 'Co-founder of Squire',
+      title: 'Co-founder of Bank of America',
       avatar: '👨‍💼',
       linkedin: '#'
     },
     {
-      company: 'APPLE',
+      company: 'Apple',
       logo: appleLogo,
       rating: 5,
       quote: 'TetraX transformed our digital infrastructure with exceptional attention to detail and innovative solutions. Their team\'s expertise in cloud migration and system integration exceeded our expectations.',

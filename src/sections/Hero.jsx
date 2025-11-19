@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { ArrowRight, Star, Sparkles, Building2, Plane, GraduationCap, Zap, Shield, Truck, Heart, ShoppingBag, Radio, Fuel, ShoppingCart, FileText } from 'lucide-react';
+import people1 from '../assets/ppl/peopple1.jpg';
+import men1 from '../assets/ppl/men1.jpg';
+import girl2 from '../assets/ppl/girl2.jpg';
 
 const AnimatedWord = ({ word, index, isLast }) => {
   const wordBlurValue = useMotionValue(10);
@@ -58,16 +62,20 @@ const ContactUsButton = () => {
   };
 
   return (
-    <motion.button
+    <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group px-8 py-3 rounded-xl text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(to bottom, #60A5FA, #3B82F6)',
-      }}
+      className="inline-block"
     >
+      <Link
+        to="/contact"
+        className="group px-8 py-3 rounded-xl text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(to bottom, #60A5FA, #3B82F6)',
+        }}
+      >
       {/* Text with roll up animation */}
       <div className="relative h-5 overflow-hidden flex items-center">
         <AnimatePresence mode="wait">
@@ -120,7 +128,8 @@ const ContactUsButton = () => {
           )}
         </AnimatePresence>
       </div>
-    </motion.button>
+    </Link>
+    </motion.div>
   );
 };
 
@@ -252,13 +261,12 @@ const Hero = () => {
             >
               {/* Profile Pictures */}
               <div className="flex -space-x-3">
-                {[1, 2, 3].map((i) => (
-                  <div
+                {[people1, men1, girl2].map((img, i) => (
+                  <img
                     key={i}
-                    className="w-12 h-12 rounded-full border-2 border-white shadow-md"
-                    style={{
-                      background: `linear-gradient(135deg, ${['#60A5FA', '#3B82F6', '#2563EB'][i - 1]}, ${['#93C5FD', '#60A5FA', '#3B82F6'][i - 1]})`,
-                    }}
+                    src={img}
+                    alt={`Reviewer ${i + 1}`}
+                    className="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover"
                   />
                 ))}
               </div>

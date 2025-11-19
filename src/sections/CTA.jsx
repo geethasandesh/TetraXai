@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const CTA = () => {
   return (
@@ -39,14 +40,19 @@ const CTA = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             
-            <motion.button
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group px-8 py-4 rounded-xl border-2 border-white text-white font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+              className="inline-block"
             >
-              <ArrowRight className="w-5 h-5" />
-              View Documentation
-            </motion.button>
+              <Link
+                to="/contact"
+                className="group px-8 py-4 rounded-xl border-2 border-white text-white font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+              >
+                <ArrowRight className="w-5 h-5" />
+                Contact Us
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
 

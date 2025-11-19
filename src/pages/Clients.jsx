@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Building2, TrendingUp, Users, Award, Sparkles } from 'lucide-react';
 
 // Import logos for clients that have them
@@ -186,7 +187,7 @@ const Clients = () => {
                       <motion.img
                         src={client.logo}
                         alt={client.name}
-                        className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                        className="max-h-full max-w-full object-contain"
                         whileHover={{ scale: 1.1 }}
                       />
                     ) : (
@@ -232,13 +233,15 @@ const Clients = () => {
             <p className="text-lg text-indigo-100 mb-6">
               Partner with us to transform your business with cutting-edge technology solutions.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-xl bg-white text-indigo-600 font-semibold shadow-xl hover:shadow-2xl transition-all"
-            >
-              Get Started Today
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 rounded-xl bg-white text-indigo-600 font-semibold shadow-xl hover:shadow-2xl transition-all"
+              >
+                Get Started Today
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
