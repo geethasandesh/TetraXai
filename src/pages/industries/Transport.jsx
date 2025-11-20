@@ -2,6 +2,8 @@ import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import bannerImage from '../../assets/indus/bannerr.jpg';
+import transportImage1 from '../../assets/indus/transport1.jpg';
+import transportImage2 from '../../assets/indus/transport2.jpg';
 
 const Transport = () => {
   const sectionRef = useRef(null);
@@ -53,13 +55,13 @@ const Transport = () => {
           transition={{ duration: 0.8 }}
           className="flex justify-center lg:w-1/2 mb-6 lg:mb-0"
         >
-          <div
-            className="w-full md:w-4/5 lg:w-5/6 h-96 rounded-2xl relative flex items-center justify-center"
-            style={{
-              background: 'linear-gradient(135deg, #87CEEB 0%, #4682B4 100%)',
-            }}
-          >
-            <div className="w-3 h-3 bg-black rounded-full"></div>
+          <div className="w-full md:w-4/5 lg:w-5/6 h-96 rounded-2xl overflow-hidden shadow-lg">
+            <img
+              src={transportImage1}
+              alt="Transportation and travel innovation"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
         </motion.div>
 
@@ -162,13 +164,13 @@ const Transport = () => {
           transition={{ duration: 0.8 }}
           className="flex justify-center lg:w-1/2"
         >
-          <div
-            className="w-full md:w-4/5 lg:w-5/6 h-96 rounded-2xl relative flex items-center justify-center"
-            style={{
-              background: 'linear-gradient(135deg, #4682B4 0%, #87CEEB 100%)',
-            }}
-          >
-            <div className="w-3 h-3 bg-black rounded-full"></div>
+          <div className="w-full md:w-4/5 lg:w-5/6 h-96 rounded-2xl overflow-hidden shadow-lg">
+            <img
+              src={transportImage2}
+              alt="TetraX transport solutions"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
         </motion.div>
       </div>

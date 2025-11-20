@@ -16,16 +16,39 @@ import tcsLogo from '../assets/tcs.png';
 import worldMapBg from '../assets/Worlddot.jpg';
 import worldLocationBg from '../assets/wolrdlocation.jpg';
 import Wipro from '../assets/wipro.png';
+import Hcl from '../assets/hcl.png';  
+import bankofamericaLogo from '../assets/bankofamerica.png';
+import wellsfargoLogo from '../assets/wellsfargo.png';  
+import capitaloneLogo from '../assets/capitolone.jpeg';
+import creditoneLogo from '../assets/creditone.png';
+import pncbankLogo from '../assets/pncbank.png';
+import usabankLogo from '../assets/usabank.png';
+import truistLogo from '../assets/truist.png';
+import lplLogo from '../assets/lpl.png';
+import mastercardLogo from '../assets/mastercard.png';
+import freddiemacLogo from '../assets/freddiemac.png';
+import humanaLogo from '../assets/humana.png';
+import cvsLogo from '../assets/cvs.png';
+import anscesionlogo from '../assets/anscesion.png';
+import seilogo from '../assets/sei.png';
+import centerpointlogo from '../assets/centerpoint.jpg'
+import umglogo from '../assets/umg.png'
+import walmartlogo from '../assets/wallmart.jpg'
+import metalogo from '../assets/meta.png'
+import amazonlogo from '../assets/amazon.png'
+import nvidialogo from '../assets/nvidia.png'
+import htclogo from '../assets/htc.png'
+
 
 const Clients = () => {
   const clients = [
     // Technology
     { name: 'APPLE', logo: appleLogo },
     { name: 'IBM', logo: ibmLogo },
-    { name: 'META', logo: null },
-    { name: 'AMAZON', logo: null },
-    { name: 'NVIDIA', logo: null },
-    { name: 'HTC', logo: null },
+    { name: 'META', logo: metalogo },
+    { name: 'AMAZON', logo: amazonlogo },
+    { name: 'NVIDIA', logo: nvidialogo },
+    { name: 'HTC', logo: htclogo },
     
     // Consulting & IT Services
     { name: 'INFOSYS', logo: infosysLogo },
@@ -35,31 +58,31 @@ const Clients = () => {
     { name: 'DELOITTE', logo: deloitteLogo },
     { name: 'ATOS', logo: atosLogo },
     { name: 'WIPRO', logo: Wipro },
-    { name: 'HCL', logo: null },
+    { name: 'HCL', logo: Hcl },
     
     // Financial Services
-    { name: 'BANK OF AMERICA', logo: null },
-    { name: 'WELLS FARGO', logo: null },
-    { name: 'CAPITAL ONE', logo: null },
-    { name: 'CREDIT ONE', logo: null },
-    { name: 'PNC BANK', logo: null },
-    { name: 'USA BANK', logo: null },
-    { name: 'TRUIST', logo: null },
-    { name: 'LPL FINANCIAL', logo: null },
-    { name: 'MASTER CARD', logo: null },
-    { name: 'FREDDIE MAC', logo: null },
+    { name: 'BANK OF AMERICA', logo: bankofamericaLogo },
+    { name: 'WELLS FARGO', logo: wellsfargoLogo },
+    { name: 'CAPITAL ONE', logo: capitaloneLogo },
+    { name: 'CREDIT ONE', logo: creditoneLogo },
+    { name: 'PNC BANK', logo: pncbankLogo },
+    { name: 'USA BANK', logo: usabankLogo },
+    { name: 'TRUIST', logo: truistLogo },
+    { name: 'LPL FINANCIAL', logo: lplLogo },
+    { name: 'MASTER CARD', logo: mastercardLogo },
+    { name: 'FREDDIE MAC', logo: freddiemacLogo },
     
     // Healthcare
-    { name: 'HUMANA', logo: null },
-    { name: 'CVS', logo: null },
-    { name: 'ASCENSION', logo: null },
+    { name: 'HUMANA', logo: humanaLogo },
+    { name: 'CVS', logo: cvsLogo },
+    { name: 'ASCENSION', logo: anscesionlogo },
     
     // Other Industries
     { name: 'ADP', logo: adpLogo },
-    { name: 'SEI', logo: null },
-    { name: 'CENTERPOINT', logo: null },
-    { name: 'UMG', logo: null },
-    { name: 'WALMART', logo: null },
+    { name: 'SEI', logo: seilogo },
+    { name: 'CENTERPOINT', logo: centerpointlogo },
+    { name: 'UMG', logo: umglogo },
+    { name: 'WALMART', logo: walmartlogo },
   ];
 
   const stats = [

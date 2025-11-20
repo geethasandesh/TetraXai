@@ -71,7 +71,7 @@ const ContactUsButton = () => {
     >
       <Link
         to="/contact"
-        className="group px-8 py-3 rounded-xl text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto relative overflow-hidden"
+        className="group px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl text-white font-semibold text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto relative overflow-hidden"
         style={{
           background: 'linear-gradient(to bottom, #60A5FA, #3B82F6)',
         }}
@@ -141,12 +141,12 @@ const Hero = () => {
 
   return (
     <section 
-      className="relative overflow-hidden flex items-center pt-4"
+      className="relative overflow-hidden flex items-center pt-4 sm:pt-6 lg:pt-8"
       style={{
         background: 'radial-gradient(circle at center, rgba(147, 197, 253, 0.3) 0%, rgba(219, 234, 254, 0.2) 50%, rgba(239, 246, 255, 0.1) 100%)',
       }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-4 lg:py-6 text-center relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 lg:py-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -157,11 +157,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center justify-center mb-3"
+            className="flex items-center justify-center mb-3 px-2"
           >
             {/* Outer pill container with light blue background and border */}
             <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full border flex-wrap justify-center"
               style={{
                 background: 'rgba(219, 234, 254, 0.5)',
                 borderColor: 'rgba(0, 0, 0, 0.1)',
@@ -169,21 +169,21 @@ const Hero = () => {
             >
               {/* Inner "New" badge with transparent background */}
               <div 
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+                className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
                 style={{
                   background: 'rgba(96, 165, 250, 0.15)',
                 }}
               >
                 {/* Blue dot */}
                 <div 
-                  className="w-2 h-2 rounded-full"
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full"
                   style={{
                     background: '#60A5FA',
                   }}
                 />
                 {/* "New" text in blue */}
                 <span 
-                  className="text-sm font-medium"
+                  className="text-xs sm:text-sm font-medium"
                   style={{
                     color: '#3B82F6',
                   }}
@@ -194,7 +194,7 @@ const Hero = () => {
               
               {/* "IT Consulting Services" text */}
               <span 
-                className="text-sm font-mono"
+                className="text-xs sm:text-sm font-mono"
                 style={{
                   color: '#2D1B0E',
                 }}
@@ -205,7 +205,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-mono font-bold mb-3 flex flex-wrap justify-center items-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold mb-3 sm:mb-4 px-2 flex flex-wrap justify-center items-center leading-tight sm:leading-normal">
             {words.map((word, index) => (
               <AnimatedWord 
                 key={index} 
@@ -221,7 +221,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-base sm:text-lg text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6"
           >
             We provide comprehensive IT consulting services to help businesses optimize their technology infrastructure, streamline operations, and achieve digital transformation goals.
           </motion.p>
@@ -241,11 +241,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="flex items-center mb-12 w-full"
+            className="flex items-center mb-8 sm:mb-12 w-full px-2"
           >
-            {/* Left horizontal line */}
+            {/* Left horizontal line - hidden on mobile */}
             <div 
-              className="h-px flex-1"
+              className="hidden sm:block h-px flex-1"
               style={{
                 background: 'rgba(0, 0, 0, 0.1)',
               }}
@@ -253,45 +253,45 @@ const Hero = () => {
             
             {/* Outer pill container with light blue background and border */}
             <div 
-              className="inline-flex items-center gap-4 px-4 py-2 rounded-full border shrink-0 mx-4"
+              className="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full border shrink-0 mx-2 sm:mx-4 flex-wrap justify-center"
               style={{
                 background: 'rgba(219, 234, 254, 0.5)',
                 borderColor: 'rgba(0, 0, 0, 0.1)',
               }}
             >
               {/* Profile Pictures */}
-              <div className="flex -space-x-3">
+              <div className="flex -space-x-2 sm:-space-x-3">
                 {[people1, men1, girl2].map((img, i) => (
                   <img
                     key={i}
                     src={img}
                     alt={`Reviewer ${i + 1}`}
-                    className="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border-2 border-white shadow-md object-cover"
                   />
                 ))}
               </div>
               
               {/* Review Text and Rating */}
-              <div className="flex items-center gap-2">
-                <span className="text-gray-700 font-semibold">2.4k+ Reviews</span>
+              <div className="flex items-center gap-1 sm:gap-2">
+                <span className="text-gray-700 font-semibold text-xs sm:text-sm">2.4k+ Reviews</span>
               </div>
               
-              <div className="flex items-center gap-1">
-                <span className="text-gray-700 font-bold text-lg">5.0</span>
+              <div className="flex items-center gap-0.5 sm:gap-1">
+                <span className="text-gray-700 font-bold text-base sm:text-lg">5.0</span>
                 <div className="flex gap-0.5">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star
                       key={i}
-                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 fill-yellow-400 text-yellow-400"
                     />
                   ))}
                 </div>
               </div>
             </div>
             
-            {/* Right horizontal line */}
+            {/* Right horizontal line - hidden on mobile */}
             <div 
-              className="h-px flex-1"
+              className="hidden sm:block h-px flex-1"
               style={{
                 background: 'rgba(0, 0, 0, 0.1)',
               }}
@@ -309,12 +309,12 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center"
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center px-2"
             >
               Our Industry Experience
             </motion.h2>
             
-            <div ref={industrySectionRef} className="flex flex-row items-center justify-center gap-6 w-full flex-wrap">
+            <div ref={industrySectionRef} className="flex flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 w-full flex-wrap px-2">
               {[
                 { name: "Banking & Finance", icon: Building2, rotation: -3, delay: 0.05 },
                 { name: "Travel & Hospitality", icon: Plane, rotation: 2, delay: 0.1 },
@@ -354,26 +354,26 @@ const Hero = () => {
                     y: -10,
                     z: 50
                   }}
-                  className="bg-transparent rounded-xl p-4 sm:p-6 transition-all cursor-pointer flex flex-col items-center justify-center gap-3 text-center w-[140px] sm:w-[160px]"
+                  className="bg-transparent rounded-xl p-3 sm:p-4 md:p-6 transition-all cursor-pointer flex flex-col items-center justify-center gap-2 sm:gap-3 text-center w-[120px] sm:w-[140px] md:w-[160px]"
                   style={{
                     transformStyle: 'preserve-3d'
                   }}
                 >
                   <motion.div 
-                    className="w-12 h-12 rounded-lg bg-transparent border-2 flex items-center justify-center"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-transparent border-2 flex items-center justify-center"
                     style={{
                       borderColor: '#3B82F6'
                     }}
                   >
                     <industry.icon 
-                      className="w-6 h-6" 
+                      className="w-5 h-5 sm:w-6 sm:h-6" 
                       style={{
                         color: '#3B82F6',
                         filter: 'blur(0.8px)'
                       }} 
                     />
                   </motion.div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">
+                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 leading-tight px-1">
                     {industry.name}
                   </p>
                 </motion.div>

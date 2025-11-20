@@ -52,23 +52,23 @@ const ReasonItem = ({ reason, index, totalReasons, scrollYProgress }) => {
         y,
         scale,
         position: 'absolute',
-        top: 0,
+        top: '80px',
         left: 0,
         right: 0,
         bottom: 0,
       }}
       className="flex items-center justify-center px-6 lg:px-12"
     >
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center px-4 sm:px-6">
         {/* Left Side - Content */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6 z-20">
           {/* Title */}
-          <h2 className="text-5xl lg:text-6xl font-bold text-gray-900">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
             {reason.title}
           </h2>
 
           {/* Description */}
-          <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
             {reason.description}
           </p>
         </div>
@@ -94,18 +94,18 @@ const AnimatedArcNumber = ({ index, totalReasons, scrollYProgress, position, rot
     [0, 1, 1, 0]
   );
   
-  // Dot radius - smoother animation
+  // Dot radius - smoother animation (smaller on mobile)
   const dotRadius = useTransform(
     isActiveProgress,
     [0, 1],
-    [4, 6]
+    [3, 5] // Smaller dots for mobile
   );
   
-  // Font size - smoother animation
+  // Font size - smoother animation (smaller on mobile)
   const fontSize = useTransform(
     isActiveProgress,
     [0, 1],
-    [24, 32]
+    [18, 24] // Smaller font for mobile
   );
   
   // Color based on scroll position - smoother color transitions
@@ -178,7 +178,7 @@ const AnimatedArc = ({ scrollYProgress, reasons }) => {
   // Positioned at the right edge of viewBox
   const centerX = 180; // Positioned to align with right edge
   const centerY = 300;
-  const radius = 180; // Reduced from 250 to make it smaller
+  const radius = 140; // Smaller radius for better mobile display
   
   // Semi-circle arc path - changed sweep flag from 1 to 0 to curve left
   const arcPath = `M ${centerX} ${centerY - radius} A ${radius} ${radius} 0 0 0 ${centerX} ${centerY + radius}`;
@@ -203,10 +203,10 @@ const AnimatedArc = ({ scrollYProgress, reasons }) => {
   });
 
   return (
-    <div className="relative hidden lg:block w-full h-full">
+    <div className="relative w-full h-full">
       <svg
         className="w-full h-full"
-        viewBox="0 0 400 600"
+        viewBox="0 0 360 600"
         preserveAspectRatio="xMaxYMid meet"
       >
         {/* Semi-circle Arc */}
@@ -276,9 +276,24 @@ const WhyChooseUs = () => {
     >
       {/* Fixed viewport container */}
       <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Section Heading - Fixed at top */}
+        <div className="absolute top-0 left-0 right-0 z-20 bg-gray-50 pt-4 sm:pt-6 lg:pt-8 pb-2 sm:pb-3">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-sans text-gray-900 text-center"
+            >
+              Why Choose Us
+            </motion.h1>
+          </div>
+        </div>
         {/* Animated Arc - Always visible on right side, completely at right edge */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:flex items-center justify-end z-10">
-          <AnimatedArc scrollYProgress={scrollYProgress} reasons={reasons} />
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 flex items-center justify-end z-10">
+          <div className="w-full lg:w-auto h-full max-w-[200px] sm:max-w-[250px] lg:max-w-none">
+            <AnimatedArc scrollYProgress={scrollYProgress} reasons={reasons} />
+          </div>
         </div>
 
         {/* Content Items */}

@@ -2,6 +2,8 @@ import { motion, useInView } from 'framer-motion';
 import { MessageSquare, Phone, MapPin } from 'lucide-react';
 import { useState, useRef } from 'react';
 import locationImg from '../assets/ppl/location.png';
+import location1 from '../assets/ppl/location1.png';
+import location2 from '../assets/ppl/location2.png';
 
 const Contact = () => {
   const sectionRef = useRef(null);
@@ -63,10 +65,10 @@ const Contact = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start"
+          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 lg:gap-14 items-start"
         >
           {/* Left Section */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
             {/* Title */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -110,10 +112,10 @@ const Contact = () => {
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Reach Out to Us</h3>
                 <p className="text-gray-600 text-sm mb-3">Need assistance? Drop us a message anytime.</p>
                 <a
-                  href="mailto:contact@tetrax.ai"
+                  href="mailto:cinfo@nexusaisol.com"
                   className="text-purple-600 underline font-medium hover:text-purple-700 transition-colors"
                 >
-                  contact@tetrax.ai
+                  info@nexusaisol.com
                 </a>
               </motion.div>
 
@@ -131,78 +133,22 @@ const Contact = () => {
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Call Us</h3>
                 <p className="text-gray-600 text-sm mb-3">Need help? Give us a call— we're here for you.</p>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+1 (980) 781-9639"
                   className="text-purple-600 underline font-medium hover:text-purple-700 transition-colors"
                 >
-                  +1234567890
+                  +1 (980) 781-9639
                 </a>
               </motion.div>
             </div>
-
-            {/* USA Location Section - Under Contact Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6"
-            >
-              {/* Left - Location Text */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="bg-purple-50 rounded-2xl shadow-xl p-6 flex flex-col"
-              >
-                <h3 className="text-xl font-bold text-gray-900 flex items-center mb-4">
-                  <span className="mr-2 bg-purple-600 text-white p-2 rounded-full">
-                    <MapPin className="w-4 h-4" />
-                  </span>
-                  USA
-                </h3>
-                <div className="space-y-3 text-gray-700 text-sm flex-grow">
-                  <p>
-                    <strong className="text-gray-900">Address:</strong> Arthicus Global Inc <br />
-                    11020 David Taylor Dr #100, Charlotte, NC 28262, USA.
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Phone:</strong> +91–40–35160930
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Email:</strong> info@arthicus.com
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Right - Location Image */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="bg-purple-50 rounded-2xl shadow-xl p-6"
-              >
-                <a
-                  href="https://www.google.com/maps/place/11020+David+Taylor+Dr+%23100,+Charlotte,+NC+28262,+USA/@35.3398229,-80.765937,17.25z/data=!4m6!3m5!1s0x88541c54f6f8638f:0x1b3f3004bea5c44e!8m2!3d35.3397861!4d-80.7631867!16s%2Fg%2F11qz9_03jj?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <img
-                    src={locationImg}
-                    alt="USA Location"
-                    className="rounded-lg shadow-md w-full h-auto"
-                  />
-                </a>
-              </motion.div>
-            </motion.div>
           </motion.div>
           {/* Right Section - Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-purple-50 rounded-2xl shadow-xl p-8 lg:p-10"
+            className="bg-purple-50 rounded-2xl shadow-xl p-6 lg:p-8 max-w-xl w-full mx-auto lg:mx-0"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name Field */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -218,7 +164,7 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-white text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   required
                 />
               </motion.div>
@@ -238,7 +184,7 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-white text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   required
                 />
               </motion.div>
@@ -258,7 +204,7 @@ const Contact = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-white text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   required
                 />
               </motion.div>
@@ -277,8 +223,8 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="6"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-y"
+                  rows="4"
+                  className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-white text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-y"
                   required
                 ></textarea>
               </motion.div>
@@ -291,12 +237,114 @@ const Contact = () => {
                 transition={{ duration: 0.6, delay: 0.9 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                className="w-full py-3.5 px-6 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all"
               >
                 Submit
               </motion.button>
             </form>
           </motion.div>
+        </motion.div>
+
+        {/* Locations Section - Below main content */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-14 lg:mt-20"
+        >
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 text-center mb-8">
+            Our Locations
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* India Location */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="bg-purple-50 rounded-2xl shadow-xl overflow-hidden"
+            >
+              <div className="p-5 lg:p-6">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900 flex items-center mb-4">
+                  <span className="mr-3 bg-purple-600 text-white p-2 rounded-full">
+                    <MapPin className="w-5 h-5" />
+                  </span>
+                  Hyderabad, India
+                </h3>
+                <div className="space-y-3 text-gray-700 mb-4 text-sm lg:text-base">
+                  <p>
+                    <strong className="text-gray-900">Address:</strong> <br />
+                    Unit no. 1020 , 9 floor <br />
+                    Vasavi MPM Grand, Ameerpet <br />
+                    Near by metro station, <br />
+                    Hyderabad, Telangana , India
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">Phone:</strong>  +1 (980) 781-9639
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">Email:</strong> info@nexusaisol.com
+                  </p>
+                </div>
+                <a
+                  href="https://www.google.com/maps/search/Unit+no.+1020+,+9+floor+Vasavi+MPM+Grand,+Ameerpet/@17.4343916,78.4439867,18z?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D.4965,78.3542,15z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden"
+                >
+                 <img
+                    src={location2}
+                    alt="India Location"
+                    className="w-full h-36 object-cover"
+                  />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* USA Location */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="bg-purple-50 rounded-2xl shadow-xl overflow-hidden"
+            >
+              <div className="p-5 lg:p-6">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900 flex items-center mb-4">
+                  <span className="mr-3 bg-purple-600 text-white p-2 rounded-full">
+                    <MapPin className="w-5 h-5" />
+                  </span>
+                  USA
+                </h3>
+                <div className="space-y-3 text-gray-700 mb-4 text-sm lg:text-base">
+                  <p>
+                    <strong className="text-gray-900">Address:</strong> <br />
+                    TetraX AI <br />
+                    11020 David Taylor Dr #100, <br />
+                    Charlotte, NC 28262, USA <br />
+                    <br />
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">Phone:</strong> +1 (980) 781-9639
+                  </p>
+                  <p>
+                    <strong className="text-gray-900">Email:</strong> info@nexusaisol.com
+                  </p>
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/11020+David+Taylor+Dr+%23100,+Charlotte,+NC+28262,+USA/@35.3398229,-80.765937,17.25z/data=!4m6!3m5!1s0x88541c54f6f8638f:0x1b3f3004bea5c44e!8m2!3d35.3397861!4d-80.7631867!16s%2Fg%2F11qz9_03jj?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden"
+                >
+                  <img
+                    src={location1}
+                    alt="USA Location"
+                    className="w-full h-36 object-cover"
+                  />
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </div>

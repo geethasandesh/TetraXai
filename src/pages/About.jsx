@@ -376,10 +376,10 @@ const About = () => {
           <Mail className="w-5 h-5" />
           <span>Feel free to mail us for any enquiries : </span>
           <a
-            href="mailto:contact@tetrax.ai"
+            href="mailto:info@nexusaisol.com"
             className="underline hover:text-purple-600 transition-colors"
           >
-            contact@tetrax.ai
+            info@nexusaisol.com
           </a>
         </div>
       </motion.div>

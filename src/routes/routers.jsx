@@ -12,6 +12,7 @@ import Telecommunication from '../pages/industries/Telecommunication';
 import Energy from '../pages/industries/Energy';
 import Consumer from '../pages/industries/Consumer';
 import Transport from '../pages/industries/Transport';
+import Carrers from '../pages/Carrers';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: 'clients',
         element: <Clients />,
+      },
+      {
+        path: 'carrers',
+        element: <Carrers />,
       },
     ],
   },

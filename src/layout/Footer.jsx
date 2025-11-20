@@ -89,6 +89,7 @@ const Footer = () => {
   const exploreLinks = [
     { name: 'About', path: '/about' },
     { name: 'Features', path: '/features' },
+    { name: 'Carrers', path: '/carrers' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -107,7 +108,7 @@ const Footer = () => {
     { icon: Twitter, username: '@tetrax', href: '#', color: 'text-gray-900' },
     { icon: Linkedin, username: '@tetrax', href: '#', color: 'text-blue-600' },
     { icon: Github, username: '@tetrax', href: '#', color: 'text-gray-900' },
-    { icon: Mail, username: 'contact@tetrax.ai', href: 'mailto:contact@tetrax.ai', color: 'text-gray-900' },
+    { icon: Mail, username: 'info@nexusaisol.com', href: 'mailto:info@nexusaisol.com', color: 'text-gray-900' },
   ];
 
   return (
