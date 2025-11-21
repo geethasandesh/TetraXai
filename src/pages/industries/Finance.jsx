@@ -24,7 +24,7 @@ const Finance = () => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="absolute inset-0 backdrop-blur-sm"></div>
+        <div className="absolute inset-0"></div>
         <div className="relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

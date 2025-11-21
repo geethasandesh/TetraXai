@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion'; // eslint-disable-line no-unused-vars
 import { Menu, X, Sparkles, ArrowRight } from 'lucide-react';
 
 const NavLink = ({ link, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -15,35 +13,9 @@ const NavLink = ({ link, index }) => {
     >
       <Link
         to={link.path}
-        className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative flex items-center"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative flex items-center pb-1 border-b-2 border-transparent hover:border-indigo-600"
       >
-        <motion.span
-          className="text-gray-700 group-hover:text-indigo-600"
-          animate={{ 
-            x: isHovered ? -8 : 0,
-          }}
-          transition={{ 
-            duration: 0.4,
-            ease: "easeOut"
-          }}
-        >
-          [
-        </motion.span>
-        <span className="mx-1.5">{link.name}</span>
-        <motion.span
-          className="text-gray-700 group-hover:text-indigo-600"
-          animate={{ 
-            x: isHovered ? 8 : 0,
-          }}
-          transition={{ 
-            duration: 0.4,
-            ease: "easeOut"
-          }}
-        >
-          ]
-        </motion.span>
+        {link.name}
       </Link>
     </motion.div>
   );
@@ -60,9 +32,18 @@ const industryLinks = [
   { name: 'Transportation and Travel', path: '/industries/transport' },
 ];
 
+const technologyLinks = [
+  
+  { name: 'AI', path: '/technologies/ai' },
+  { name: 'Cloud Computing', path: '/technologies/cloud-computing' },
+  { name: 'DevOps', path: '/technologies/devops' },
+  { name: 'Big Data', path: '/technologies/big-data' },
+  { name: 'Web Development', path: '/technologies/web-development' },
+  { name: 'IoT', path: '/technologies/iot' },
+];
+
 const IndustriesDropdown = ({ index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isLinkHovered, setIsLinkHovered] = useState(false);
 
   return (
     <motion.div
@@ -73,37 +54,12 @@ const IndustriesDropdown = ({ index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative flex items-center cursor-pointer"
-        onMouseEnter={() => setIsLinkHovered(true)}
-        onMouseLeave={() => setIsLinkHovered(false)}
+      <Link
+        to="/industries"
+        className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative flex items-center cursor-pointer pb-1 border-b-2 border-transparent hover:border-indigo-600"
       >
-        <motion.span
-          className="text-gray-700 group-hover:text-indigo-600"
-          animate={{ 
-            x: isLinkHovered ? -8 : 0,
-          }}
-          transition={{ 
-            duration: 0.4,
-            ease: "easeOut"
-          }}
-        >
-          [
-        </motion.span>
-        <span className="mx-1.5">Industries</span>
-        <motion.span
-          className="text-gray-700 group-hover:text-indigo-600"
-          animate={{ 
-            x: isLinkHovered ? 8 : 0,
-          }}
-          transition={{ 
-            duration: 0.4,
-            ease: "easeOut"
-          }}
-        >
-          ]
-        </motion.span>
-      </div>
+        Industries
+      </Link>
 
       {/* Dropdown Menu */}
       <AnimatePresence>
@@ -137,36 +93,92 @@ const IndustriesDropdown = ({ index }) => {
   );
 };
 
+const TechnologyDropdown = ({ index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="group relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Link
+        to="/technologies"
+        className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors relative flex items-center cursor-pointer pb-1 border-b-2 border-transparent hover:border-indigo-600"
+      >
+        Technology
+      </Link>
+
+      {/* Dropdown Menu */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 z-50"
+            style={{
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05)',
+            }}
+          >
+            {technologyLinks.map((technology) => (
+              <Link
+                key={technology.path}
+                to={technology.path}
+                className="block px-5 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 border-l-2 border-transparent hover:border-indigo-600"
+                style={{
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {technology.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 const MobileIndustriesDropdown = ({ onLinkClick }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div>
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center justify-between w-full"
-      >
-        <span className="flex items-center">
-          <span>[</span>
-          <span className="mx-1.5">Industries</span>
-          <span>]</span>
-        </span>
-        <motion.div
-          animate={{ rotate: isExpanded ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+    <div className="rounded-lg border border-gray-100">
+      <div className="flex items-center justify-between px-4 py-2">
+        <Link
+          to="/industries"
+          onClick={onLinkClick}
+          className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </motion.div>
-      </button>
+          Industries
+        </Link>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          aria-label="Toggle industry links"
+        >
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        </button>
+      </div>
       <AnimatePresence>
         {isExpanded && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="pl-8 mt-2 space-y-2"
+            className="pl-8 pr-4 pb-3 space-y-2"
           >
             {industryLinks.map((industry) => (
               <Link
@@ -176,6 +188,59 @@ const MobileIndustriesDropdown = ({ onLinkClick }) => {
                 className="block text-sm text-gray-600 hover:text-indigo-600 transition-colors py-1"
               >
                 {industry.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const MobileTechnologyDropdown = ({ onLinkClick }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="rounded-lg border border-gray-100">
+      <div className="flex items-center justify-between px-4 py-2">
+        <Link
+          to="/technologies"
+          onClick={onLinkClick}
+          className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors"
+        >
+          Technology
+        </Link>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          aria-label="Toggle technology links"
+        >
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        </button>
+      </div>
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="pl-8 pr-4 pb-3 space-y-2"
+          >
+            {technologyLinks.map((technology) => (
+              <Link
+                key={technology.path}
+                to={technology.path}
+                onClick={onLinkClick}
+                className="block text-sm text-gray-600 hover:text-indigo-600 transition-colors py-1"
+              >
+                {technology.name}
               </Link>
             ))}
           </motion.div>
@@ -303,11 +368,12 @@ const Header = () => {
   }, [lastScrollY]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/features' },
     { name: 'Industries', path: null },
+    { name: 'Technology', path: null },
     { name: 'Clients', path: '/clients' },
     { name: 'About', path: '/about' },
-    { name: 'Carrers', path: '/carrers' },
+    { name: 'Careers', path: '/careers' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -351,7 +417,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center relative">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
+            <Link to="/" className="flex items-center gap-3 group shrink-0">
             <div>
               <h1 className="font-extrabold tracking-tight text-lg">
                 Tetra<span className="text-indigo-600">X</span>
@@ -365,6 +431,9 @@ const Header = () => {
             {navLinks.map((link, index) => {
               if (link.name === 'Industries') {
                 return <IndustriesDropdown key={link.name} index={index} />;
+              }
+              if (link.name === 'Technology') {
+                return <TechnologyDropdown key={link.name} index={index} />;
               }
               return <NavLink key={link.name} link={link} index={index} />;
             })}
@@ -399,16 +468,17 @@ const Header = () => {
                   if (link.name === 'Industries') {
                     return <MobileIndustriesDropdown key={link.name} onLinkClick={() => setIsMenuOpen(false)} />;
                   }
+                  if (link.name === 'Technology') {
+                    return <MobileTechnologyDropdown key={link.name} onLinkClick={() => setIsMenuOpen(false)} />;
+                  }
                   return (
                     <Link
                       key={link.name}
                       to={link.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center"
+                      className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50 border-b-2 border-transparent hover:border-indigo-600"
                     >
-                      <span>[</span>
-                      <span className="mx-1.5">{link.name}</span>
-                      <span>]</span>
+                      {link.name}
                     </Link>
                   );
                 })}

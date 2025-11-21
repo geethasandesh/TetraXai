@@ -4,6 +4,9 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Clients from '../pages/Clients';
+import Features from '../pages/Features';
+import IndustriesOverview from '../pages/IndustriesOverview';
+import TechnologiesOverview from '../pages/TechnologiesOverview';
 import Finance from '../pages/industries/Finance';
 import HealthCare from '../pages/industries/HealthCare';
 import Media from '../pages/industries/Media';
@@ -12,7 +15,13 @@ import Telecommunication from '../pages/industries/Telecommunication';
 import Energy from '../pages/industries/Energy';
 import Consumer from '../pages/industries/Consumer';
 import Transport from '../pages/industries/Transport';
-import Carrers from '../pages/Carrers';
+import Careers from '../pages/Carrers';
+import Iot from '../pages/Technologies/Iot';
+import WebDevelopment from '../pages/Technologies/WebDevelopment';
+import BigData from '../pages/Technologies/BigData';
+import Ai from '../pages/Technologies/Ai';
+import CloudComputing from '../pages/Technologies/CloudComputing';
+import Devops from '../pages/Technologies/Devops';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +31,18 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: 'industries',
+        element: <IndustriesOverview />,
+      },
+      {
+        path: 'technologies',
+        element: <TechnologiesOverview />,
+      },
+      {
+        path: 'features',
+        element: <Features />,
       },
       {
         path: 'industries/finance',
@@ -68,8 +89,32 @@ const router = createBrowserRouter([
         element: <Clients />,
       },
       {
-        path: 'carrers',
-        element: <Carrers />,
+        path: 'careers',
+        element: <Careers />,
+      },
+      {
+        path: 'technologies/iot',
+        element: <Iot />,
+      },
+      {
+        path: 'technologies/web-development',
+        element: <WebDevelopment />,
+      },
+      {
+        path: 'technologies/big-data',
+        element: <BigData />,
+      },
+      {
+        path: 'technologies/ai',
+        element: <Ai />,
+      },
+      {
+        path: 'technologies/cloud-computing',
+        element: <CloudComputing />,
+      },
+      {
+        path: 'technologies/devops',
+        element: <Devops />,
       },
     ],
   },

@@ -1,24 +1,62 @@
 import { motion, useInView } from 'framer-motion';
 import { MessageSquare, Phone, MapPin } from 'lucide-react';
 import { useState, useRef } from 'react';
-import locationImg from '../assets/ppl/location.png';
 import location1 from '../assets/ppl/location1.png';
 import location2 from '../assets/ppl/location2.png';
+import charminar from '../assets/logos/charminar.jpg';
+import usa from '../assets/logos/usa.png';
 
 const Contact = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   
   const [formData, setFormData] = useState({
-    name: 'Jane Smith',
-    email: 'jane@framer.com',
-    subject: 'Subject',
-    message: 'message goes here...',
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+  const getApiBaseUrl = () =>
+    import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001/api' : '/api');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const API_URL = getApiBaseUrl();
+      const response = await fetch(`${API_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({ type: 'success', message: 'Thank you! Your message has been sent successfully.' });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus({ type: 'error', message: data.error || 'Failed to send message. Please try again.' });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus({ type: 'error', message: 'Network error. Please check your connection and try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -112,10 +150,10 @@ const Contact = () => {
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Reach Out to Us</h3>
                 <p className="text-gray-600 text-sm mb-3">Need assistance? Drop us a message anytime.</p>
                 <a
-                  href="mailto:cinfo@nexusaisol.com"
+                  href="mailto:info@tetraxai.com"
                   className="text-purple-600 underline font-medium hover:text-purple-700 transition-colors"
                 >
-                  info@nexusaisol.com
+                  info@tetraxai.com
                 </a>
               </motion.div>
 
@@ -229,17 +267,35 @@ const Contact = () => {
                 ></textarea>
               </motion.div>
 
+              {/* Submit Status Message */}
+              {submitStatus.message && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`p-3 rounded-lg text-sm ${
+                    submitStatus.type === 'success'
+                      ? 'bg-green-100 text-green-700 border border-green-300'
+                      : 'bg-red-100 text-red-700 border border-red-300'
+                  }`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
+
               {/* Submit Button */}
               <motion.button
                 type="submit"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 px-6 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                disabled={isSubmitting}
+                className={`w-full py-3.5 px-6 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all ${
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
               >
-                Submit
+                {isSubmitting ? 'Sending...' : 'Submit'}
               </motion.button>
             </form>
           </motion.div>
@@ -269,7 +325,14 @@ const Contact = () => {
                   <span className="mr-3 bg-purple-600 text-white p-2 rounded-full">
                     <MapPin className="w-5 h-5" />
                   </span>
-                  Hyderabad, India
+                  <span className="flex items-center gap-2">
+                    Hyderabad, India
+                    <img 
+                      src={charminar} 
+                      alt="Charminar" 
+                      className="w-6 h-6 lg:w-7 lg:h-7 object-cover rounded"
+                    />
+                  </span>
                 </h3>
                 <div className="space-y-3 text-gray-700 mb-4 text-sm lg:text-base">
                   <p>
@@ -283,7 +346,7 @@ const Contact = () => {
                     <strong className="text-gray-900">Phone:</strong>  +1 (980) 781-9639
                   </p>
                   <p>
-                    <strong className="text-gray-900">Email:</strong> info@nexusaisol.com
+                    <strong className="text-gray-900">Email:</strong> info@tetraxai.com
                   </p>
                 </div>
                 <a
@@ -313,7 +376,14 @@ const Contact = () => {
                   <span className="mr-3 bg-purple-600 text-white p-2 rounded-full">
                     <MapPin className="w-5 h-5" />
                   </span>
-                  USA
+                  <span className="flex items-center gap-2">
+                    USA
+                    <img 
+                      src={usa} 
+                      alt="USA" 
+                      className="w-6 h-6 lg:w-7 lg:h-7 object-cover rounded"
+                    />
+                  </span>
                 </h3>
                 <div className="space-y-3 text-gray-700 mb-4 text-sm lg:text-base">
                   <p>
@@ -327,7 +397,7 @@ const Contact = () => {
                     <strong className="text-gray-900">Phone:</strong> +1 (980) 781-9639
                   </p>
                   <p>
-                    <strong className="text-gray-900">Email:</strong> info@nexusaisol.com
+                    <strong className="text-gray-900">Email:</strong> info@tetraxai.com
                   </p>
                 </div>
                 <a

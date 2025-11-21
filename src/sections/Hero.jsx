@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
-import { ArrowRight, Star, Sparkles, Building2, Plane, GraduationCap, Zap, Shield, Truck, Heart, ShoppingBag, Radio, Fuel, ShoppingCart, FileText } from 'lucide-react';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion'; // eslint-disable-line no-unused-vars
+import { ArrowRight, Star, Sparkles, DollarSign, Heart, Film, Cpu, Phone, Battery, Package, Plane } from 'lucide-react';
 import people1 from '../assets/ppl/peopple1.jpg';
 import men1 from '../assets/ppl/men1.jpg';
 import girl2 from '../assets/ppl/girl2.jpg';
@@ -311,38 +311,44 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center px-2"
             >
-              Our Industry Experience
+              Our Services
             </motion.h2>
             
-            <div ref={industrySectionRef} className="flex flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 w-full flex-wrap px-2">
+            <div
+              ref={industrySectionRef}
+              className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4 w-full px-2 pb-2"
+            >
               {[
-                { name: "Banking & Finance", icon: Building2, rotation: -3, delay: 0.05 },
-                { name: "Travel & Hospitality", icon: Plane, rotation: 2, delay: 0.1 },
-                { name: "Education", icon: GraduationCap, rotation: -2, delay: 0.15 },
-                { name: "Energy & Utility", icon: Zap, rotation: 4, delay: 0.2 },
-                { name: "Government", icon: Shield, rotation: -4, delay: 0.25 },
-              ].map((industry, index) => (
+                { name: "Financial Services", icon: DollarSign, rotation: -3, delay: 0.05 },
+                { name: "Healthcare", icon: Heart, rotation: 2, delay: 0.1 },
+                { name: "Media, Entertainment & Gaming", icon: Film, rotation: -2, delay: 0.15 },
+                { name: "Technology Enablement", icon: Cpu, rotation: 4, delay: 0.2 },
+                { name: "Telecommunications", icon: Phone, rotation: -4, delay: 0.25 },
+                { name: "Energy", icon: Battery, rotation: 3, delay: 0.3 },
+                { name: "Consumer and Industrial Products", icon: Package, rotation: -3, delay: 0.35 },
+                { name: "Transportation and Travel", icon: Plane, rotation: 2, delay: 0.4 },
+              ].map((service, index) => (
                 <motion.div
                   key={index}
                   initial={{ 
                     opacity: 0, 
                     scale: 0.8,
-                    rotate: industry.rotation * 2,
+                    rotate: service.rotation * 2,
                     y: 80
                   }}
                   animate={isIndustryInView ? { 
                     opacity: 1, 
                     scale: 1,
-                    rotate: industry.rotation,
+                    rotate: service.rotation,
                     y: 0
                   } : {
                     opacity: 0,
                     scale: 0.8,
-                    rotate: industry.rotation * 2,
+                    rotate: service.rotation * 2,
                     y: 80
                   }}
                   transition={{ 
-                    delay: industry.delay,
+                    delay: service.delay,
                     duration: 0.5,
                     type: "spring",
                     stiffness: 100,
@@ -350,31 +356,31 @@ const Hero = () => {
                   }}
                   whileHover={{ 
                     scale: 1.15,
-                    rotate: industry.rotation + (index % 2 === 0 ? 5 : -5),
+                    rotate: service.rotation + (index % 2 === 0 ? 5 : -5),
                     y: -10,
                     z: 50
                   }}
-                  className="bg-transparent rounded-xl p-3 sm:p-4 md:p-6 transition-all cursor-pointer flex flex-col items-center justify-center gap-2 sm:gap-3 text-center w-[120px] sm:w-[140px] md:w-[160px]"
+                  className="bg-transparent rounded-xl p-2.5 sm:p-3 md:p-4 transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 sm:gap-2 text-center min-w-[110px] sm:min-w-[120px] md:min-w-[135px]"
                   style={{
                     transformStyle: 'preserve-3d'
                   }}
                 >
                   <motion.div 
-                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-transparent border-2 flex items-center justify-center"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-transparent border-2 flex items-center justify-center"
                     style={{
                       borderColor: '#3B82F6'
                     }}
                   >
-                    <industry.icon 
-                      className="w-5 h-5 sm:w-6 sm:h-6" 
+                    <service.icon 
+                      className="w-4 h-4 sm:w-5 sm:h-5" 
                       style={{
                         color: '#3B82F6',
                         filter: 'blur(0.8px)'
                       }} 
                     />
                   </motion.div>
-                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 leading-tight px-1">
-                    {industry.name}
+                  <p className="text-[9px] sm:text-xs md:text-sm font-medium text-gray-700 leading-tight px-1">
+                    {service.name}
                   </p>
                 </motion.div>
               ))}

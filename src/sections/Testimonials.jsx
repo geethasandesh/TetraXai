@@ -1,10 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, MoreVertical, Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MoreVertical, Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import ibmLogo from '../assets/ibm.png';
 import accentureLogo from '../assets/accenture.png';
 import appleLogo from '../assets/apple.png';
 import bankofamericaLogo from '../assets/bankofamerica.png';
+import amazonlogo from '../assets/amazon.png';
+import nvidialogo from '../assets/nvidia.png';
+import metalogo from '../assets/meta.png';
+import walmartlogo from '../assets/wallmart.jpg';
+import capitalonelogo from '../assets/capitolone.jpeg';
+import humanalogo from '../assets/humana.png';
+import tcslogo from '../assets/tcs.png';
+import infosyslogo from '../assets/infosys.png';
+import capgeminiLogo from '../assets/capgemini.png';
+import deloitteLogo from '../assets/deloitee.png';
 
 
 const Testimonials = () => {
@@ -47,6 +57,106 @@ const Testimonials = () => {
       author: 'Sarah Johnson',
       title: 'CTO at Apple',
       avatar: '👩‍💻',
+      linkedin: '#'
+    },
+    {
+      company: null,
+      logo: amazonlogo,
+      rating: 5,
+      quote: 'The TetraX AI team modernized our fulfillment analytics with real-time dashboards and stabilized peak season operations.',
+      author: 'Priya Anand',
+      title: 'Sr. Product Leader',
+      avatar: '👩‍💼',
+      linkedin: '#'
+    },
+    {
+      company: null,
+      logo: deloitteLogo,
+      rating: 5,
+      quote: 'Their hybrid-cloud architecture blueprint improved our deployment velocity threefold while preserving enterprise security.',
+      author: 'Jon Miller',
+      title: 'Head of Engineering',
+      avatar: '👨‍💻',
+      linkedin: '#'
+    },
+    {
+      company: 'NVIDIA',
+      logo: nvidialogo,
+      rating: 5,
+      quote: 'TetraX created reusable ML accelerators that power our internal research platform and shortened experimentation cycles.',
+      author: 'Lena Ortiz',
+      title: 'Director of AI Platforms',
+      avatar: '🤖',
+      linkedin: '#'
+    },
+    {
+      company: null,
+      logo: metalogo,
+      rating: 5,
+      quote: 'They embedded with our design systems group and delivered pixel-perfect, accessible interfaces across multiple apps.',
+      author: 'Marco Ruiz',
+      title: 'Design Systems Lead',
+      avatar: '🎨',
+      linkedin: '#'
+    },
+    {
+      company: 'Walmart',
+      logo: walmartlogo,
+      rating: 5,
+      quote: 'Curbside logistics stayed rock solid even during holiday surges thanks to the observability stack TetraX implemented.',
+      author: 'Rita Thomas',
+      title: 'VP, Digital Commerce',
+      avatar: '🛒',
+      linkedin: '#'
+    },
+    {
+      company: 'Capital One',
+      logo: capitalonelogo,
+      rating: 5,
+      quote: 'Their compliant data fabric gives our analysts trusted insights within minutes while satisfying every audit requirement.',
+      author: 'Gabe Collins',
+      title: 'Data Governance Lead',
+      avatar: '📊',
+      linkedin: '#'
+    },
+    {
+      company: null,
+      logo: humanalogo,
+      rating: 5,
+      quote: 'FHIR integrations, HIPAA automation, and clinician-first UX—TetraX understands healthcare workflows deeply.',
+      author: 'Alicia Grant',
+      title: 'Clinical Technology Director',
+      avatar: '🏥',
+      linkedin: '#'
+    },
+    {
+      company: 'TCS',
+      logo: tcslogo,
+      rating: 5,
+      quote: 'We co-built accelerators with TetraX that cut our onboarding timeline for new enterprise programs in half.',
+      author: 'Rajesh Iyer',
+      title: 'Global Delivery Executive',
+      avatar: '🌐',
+      linkedin: '#'
+    },
+    {
+      company: null,
+      logo: infosyslogo,
+      rating: 5,
+      quote: 'Their coaching and reference architectures elevated our modernization practice and delighted our clients.',
+      author: 'Meera Kulkarni',
+      title: 'Transformation Lead',
+      avatar: '⚙️',
+      linkedin: '#'
+    },
+    {
+      company: null,
+      logo: capgeminiLogo,
+      rating: 5,
+      quote: 'TetraX operates like a true partner—strategic thinking, flawless execution, and measurable outcomes.',
+      author: 'Daniel Ferreira',
+      title: 'Chief Cloud Officer',
+      avatar: '☁️',
       linkedin: '#'
     }
   ];
@@ -193,8 +303,8 @@ const Testimonials = () => {
           className="mb-6 sm:mb-8 lg:mb-12 relative"
         >
           {/* Decorative Quote Icons - Hidden on mobile */}
-          <Quote className="hidden sm:block absolute -top-2 sm:-top-4 -left-2 sm:-left-4 w-8 h-8 sm:w-12 sm:h-12 text-indigo-200/50 rotate-180" />
-          <Quote className="hidden sm:block absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 w-8 h-8 sm:w-12 sm:h-12 text-indigo-200/50" />
+          <Quote className="hidden sm:block absolute -top-2 sm:-top-4 -left-2 sm:-left-4 w-8 h-8 sm:w-12 sm:h-12 text-indigo-300 rotate-180" />
+          <Quote className="hidden sm:block absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 w-8 h-8 sm:w-12 sm:h-12 text-indigo-300" />
           
           <p className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed text-center max-w-4xl mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
             {currentTestimonial.quote}
@@ -238,42 +348,6 @@ const Testimonials = () => {
           </button>
         </div>
 
-        {/* Author Section */}
-        <motion.div
-          key={`author-${currentIndex}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 max-w-2xl mx-auto"
-        >
-          <div className="flex items-center gap-3 sm:gap-4">
-            {/* Avatar with layered effect */}
-            <div className="relative">
-              {/* Background layers */}
-              <div className="absolute inset-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-indigo-200/30 blur-sm -z-10" />
-              <div className="absolute inset-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-indigo-300/20 blur-md -z-20 scale-110" />
-              
-              {/* Main avatar */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-indigo-400 to-cyan-400 flex items-center justify-center text-lg sm:text-xl lg:text-2xl shadow-lg relative z-10">
-                {currentTestimonial.avatar}
-              </div>
-            </div>
-            
-            <div className="text-center sm:text-left">
-              <h4 className="font-bold text-gray-900 text-base sm:text-lg">{currentTestimonial.author}</h4>
-              <p className="text-xs sm:text-sm text-gray-600">{currentTestimonial.title}</p>
-            </div>
-          </div>
-          
-          {/* LinkedIn Icon */}
-          <a
-            href={currentTestimonial.linkedin}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-600 flex items-center justify-center hover:bg-blue-700 transition-colors shadow-md"
-            aria-label="LinkedIn profile"
-          >
-            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );
